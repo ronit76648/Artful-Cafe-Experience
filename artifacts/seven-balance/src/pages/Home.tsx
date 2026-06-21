@@ -102,8 +102,19 @@ export default function Home() {
           transition={{ duration: 1 }}
           className="w-full max-w-5xl bg-[#ebdcc0] shadow-2xl relative flex flex-col md:flex-row p-6 md:p-12 postcard-border overflow-hidden"
         >
-          <div className="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none">
-            <img src={postcardBg} alt="" className="w-full h-full object-cover" />
+          {/* Postcard image — shown as subtle decorative frame beneath a cream scrim so text stays legible on all screen sizes */}
+          <div className="absolute inset-0 pointer-events-none">
+            <img
+              src={postcardBg}
+              alt=""
+              className="w-full h-full object-cover"
+              style={{ opacity: 0.55, mixBlendMode: "multiply" }}
+            />
+            {/* Cream scrim — lightens the centre so dark text is always readable, even on mobile */}
+            <div
+              className="absolute inset-0"
+              style={{ backgroundColor: "rgba(235,220,192,0.55)" }}
+            />
           </div>
 
           {/* Left: Story */}
