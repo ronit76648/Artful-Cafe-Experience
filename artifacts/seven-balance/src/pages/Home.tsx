@@ -264,7 +264,7 @@ export default function Home() {
 
       {/* ── CONTACT & LOCATION ── */}
       <section id="visit" className="w-full py-24 px-4 overflow-hidden relative" style={{ backgroundColor: '#f5ead6', backgroundImage: 'none' }}>
-        <PostalStamp src={stamp3} className="top-24 left-10 opacity-60" rotation={-20} />
+        <PostalStamp src={stamp3} className="bottom-16 right-10 md:right-24 opacity-50" rotation={15} />
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
           <motion.div
