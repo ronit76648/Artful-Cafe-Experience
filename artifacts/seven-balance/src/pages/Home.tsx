@@ -10,27 +10,42 @@ import stamp1 from "@/assets/images/stamp-1.png";
 import stamp2 from "@/assets/images/stamp-2.png";
 import stamp3 from "@/assets/images/stamp-3.png";
 
-/* Monogram: Hindi ७ fused with English 7 inside a circle.
-   The English 7 is the diagonal stroke (top-bar + diagonal drop).
-   The Hindi ७ curves back under like a bowl — mirrored on the left.
-   Together they read as one unified glyph: two cultures, one number. */
+/*
+  Monogram: fusion of Hindi ९ (9) + English 7.
+  — English 7: bold top horizontal bar + diagonal drop (primary form, high contrast)
+  — Hindi ९: a closed teardrop/oval loop with a downward tail, hanging from the
+    right end of the shared top bar (secondary form, lighter weight)
+  Together: one top bar shared by both numerals; the 9-loop and 7-diagonal
+  interlock, reading as two cultures / one symbol / one meaning: balance.
+*/
 const Monogram = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    {/* Outer ring */}
-    <circle cx="50" cy="50" r="44" stroke="currentColor" strokeWidth="1.2" opacity="0.35" />
-    {/* Inner ring — thin double border */}
-    <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="0.6" opacity="0.2" />
-    {/* English 7 — horizontal top bar */}
-    <line x1="28" y1="24" x2="70" y2="24" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-    {/* English 7 — diagonal drop */}
-    <line x1="70" y1="24" x2="42" y2="74" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-    {/* Hindi ७ bowl — the loop that hooks left then curls under the diagonal */}
+    {/* Decorative double ring — echoes the seal / stamp aesthetic */}
+    <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="1" opacity="0.30" />
+    <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="0.5" opacity="0.18" />
+
+    {/* ── English 7 (primary, bold) ── */}
+    {/* Top horizontal bar — shared with ९ */}
+    <line x1="18" y1="28" x2="74" y2="28" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+    {/* Diagonal drop from right end of bar to lower-left */}
+    <line x1="74" y1="28" x2="34" y2="80" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+    {/* Small accent crossbar — characteristic mark of stylised 7 */}
+    <line x1="34" y1="50" x2="62" y2="50" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.55" />
+
+    {/* ── Hindi ९ (secondary, lighter) ── */}
+    {/* The oval/teardrop head of ९: starts at the right of the shared bar,
+        loops clockwise to form a closed rounded head */}
     <path
-      d="M 58 38 C 72 38 75 52 65 60 C 55 68 42 66 42 74 C 42 82 50 84 56 82"
-      stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" fill="none" opacity="0.75"
+      d="M 65 28 C 84 26 90 40 82 52 C 75 62 60 63 54 54 C 48 45 55 28 65 28 Z"
+      stroke="currentColor" strokeWidth="2.8" fill="none" opacity="0.68"
+      strokeLinejoin="round"
     />
-    {/* Crossbar — the small horizontal tick on the 7 that echoes Hindi notation */}
-    <line x1="38" y1="46" x2="62" y2="46" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.6" />
+    {/* The tail of ९: from the base of the oval, curves gently downward,
+        echoing and complementing the 7's diagonal */}
+    <path
+      d="M 59 62 C 54 69 46 74 40 80"
+      stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" fill="none" opacity="0.60"
+    />
   </svg>
 );
 
@@ -39,12 +54,16 @@ export default function Home() {
     <div className="w-full min-h-screen text-foreground overflow-x-hidden selection:bg-primary/20">
       
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-8 py-6 mix-blend-difference text-[#f4ebd8] flex justify-between items-center bg-gradient-to-b from-black/60 to-transparent">
-        <div className="font-serif italic text-xl tracking-widest">7 Balance</div>
-        <div className="hidden md:flex gap-8 font-sans font-light tracking-[0.2em] text-xs uppercase">
-          <a href="#story" className="hover:text-primary transition-colors">Our Story</a>
-          <a href="#menu" className="hover:text-primary transition-colors">Menu</a>
-          <a href="#visit" className="hover:text-primary transition-colors">Visit Us</a>
+      <nav className="fixed top-0 left-0 w-full z-50 px-8 py-5 text-[#f4ebd8] flex justify-between items-center bg-gradient-to-b from-black/70 to-transparent">
+        {/* Wordmark: "7 balance" — the 7 is large, balance is tracked-wide */}
+        <a href="#" className="flex items-baseline gap-1 group select-none">
+          <span className="font-display italic text-2xl text-[#c8a87a] leading-none group-hover:text-[#e2c89a] transition-colors">7</span>
+          <span className="font-sans font-light text-[10px] tracking-[0.38em] uppercase text-[#f4ebd8]/90 ml-1 group-hover:text-[#f4ebd8] transition-colors">balance</span>
+        </a>
+        <div className="hidden md:flex gap-8 font-sans font-light tracking-[0.22em] text-[10px] uppercase">
+          <a href="#story" className="text-[#f4ebd8]/80 hover:text-[#c8a87a] transition-colors">Our Story</a>
+          <a href="#menu" className="text-[#f4ebd8]/80 hover:text-[#c8a87a] transition-colors">Menu</a>
+          <a href="#visit" className="text-[#f4ebd8]/80 hover:text-[#c8a87a] transition-colors">Visit Us</a>
         </div>
       </nav>
 
@@ -64,12 +83,26 @@ export default function Home() {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="relative z-10 flex flex-col items-center text-[#f4ebd8] mt-20"
         >
-          <Monogram className="w-24 h-24 md:w-32 md:h-32 mb-6 text-primary" />
-          <h1 className="font-serif text-6xl md:text-8xl tracking-tight mb-4 flex items-center">
-            <span className="text-primary italic mr-2 font-display text-7xl md:text-9xl">7</span> Balance
+          <Monogram className="w-24 h-24 md:w-32 md:h-32 mb-8 text-[#c8a87a]" />
+          {/* Brand tagline above wordmark — from brand deck opening line */}
+          <p className="font-sans font-light tracking-[0.28em] uppercase text-[10px] md:text-xs text-[#f4ebd8]/60 mb-5">
+            A new coffee experience
+          </p>
+          <h1 className="font-display italic text-6xl md:text-8xl tracking-tight mb-2 flex items-baseline gap-3 text-[#f4ebd8]">
+            <span className="text-[#c8a87a]">7</span>
+            <span>Balance</span>
           </h1>
-          <p className="font-sans font-light tracking-[0.3em] uppercase text-sm md:text-base opacity-80 mt-4">
-            Seven elements. One perfect Balance.
+          {/* The brand's own primary tagline, exactly as written in the brand deck */}
+          <div className="flex items-center gap-4 mt-6">
+            <span className="w-8 h-[1px] bg-[#c8a87a]/50"></span>
+            <p className="font-sans font-light tracking-[0.22em] uppercase text-xs text-[#c8a87a]">
+              7 elements. 1 Philosophy.
+            </p>
+            <span className="w-8 h-[1px] bg-[#c8a87a]/50"></span>
+          </div>
+          {/* Secondary descriptor — brand deck descriptors */}
+          <p className="font-display italic text-[#f4ebd8]/40 text-sm mt-4 tracking-wide">
+            Artisanal. Intentional.
           </p>
         </motion.div>
         
@@ -111,24 +144,26 @@ export default function Home() {
           {/* Left Side: Message */}
           <div className="relative z-10 w-full md:w-[55%] pr-0 md:pr-10 pb-10 md:pb-0 flex flex-col">
             <h2 className="font-display italic text-4xl md:text-5xl text-secondary mb-8">Our Story</h2>
-            <div className="font-serif text-secondary/80 leading-relaxed text-lg space-y-6">
+            <div className="font-serif text-secondary/80 leading-relaxed text-base md:text-lg space-y-5">
               <p>
-                <span className="float-left text-5xl font-display text-primary mr-3 mt-[-8px]">S</span>
-                even beans crossed the ocean. Each carried a world within it — a soil, a season, a hand that planted it.
+                <span className="float-left text-5xl font-display text-primary mr-3 mt-[-8px] leading-none">G</span>
+                reat coffee is a balance of many elements working in harmony. 7 Balance is our way of honouring that balance.
               </p>
               <p>
-                When they met on Indian shores, something ancient stirred. 7 Balance was born from that meeting. 
+                Seven beans crossed the ocean. Each carried a world within it — a soil, a season, a hand that planted it. When they met on Indian shores, something ancient stirred.
               </p>
               <p>
-                We believe great coffee is not made, it is balanced — across seven elements, seven rituals, seven moments of intention. 
-                This is our philosophy. This is our promise.
+                Seven essential elements go into every great cup. Our goal is to showcase each one as an art, a science, and a ritual — every icon hand-drawn to reflect the human touch behind every step.
+              </p>
+              <p className="font-display italic text-secondary/60 text-sm tracking-wide">
+                Handmade with Purpose. Artisanal. Intentional.
               </p>
             </div>
             
-            <div className="mt-auto pt-8 flex items-center justify-center gap-4 text-primary/40">
-              <span>❦</span>
-              <span className="w-12 h-[1px] bg-primary/30"></span>
-              <span>❦</span>
+            <div className="mt-auto pt-6 flex items-center gap-3 text-primary/40">
+              <span className="w-full h-[1px] bg-primary/20"></span>
+              <span className="font-display italic text-xs whitespace-nowrap text-primary/50">7 elements. 1 Philosophy.</span>
+              <span className="w-full h-[1px] bg-primary/20"></span>
             </div>
           </div>
           
