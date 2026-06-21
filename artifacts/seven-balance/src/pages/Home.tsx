@@ -10,11 +10,27 @@ import stamp1 from "@/assets/images/stamp-1.png";
 import stamp2 from "@/assets/images/stamp-2.png";
 import stamp3 from "@/assets/images/stamp-3.png";
 
+/* Monogram: Hindi ७ fused with English 7 inside a circle.
+   The English 7 is the diagonal stroke (top-bar + diagonal drop).
+   The Hindi ७ curves back under like a bowl — mirrored on the left.
+   Together they read as one unified glyph: two cultures, one number. */
 const Monogram = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M 20 20 L 80 20 L 40 80" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M 20 40 C 40 40 60 50 60 70 C 60 90 40 100 20 100" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="2" opacity="0.3" />
+    {/* Outer ring */}
+    <circle cx="50" cy="50" r="44" stroke="currentColor" strokeWidth="1.2" opacity="0.35" />
+    {/* Inner ring — thin double border */}
+    <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="0.6" opacity="0.2" />
+    {/* English 7 — horizontal top bar */}
+    <line x1="28" y1="24" x2="70" y2="24" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+    {/* English 7 — diagonal drop */}
+    <line x1="70" y1="24" x2="42" y2="74" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+    {/* Hindi ७ bowl — the loop that hooks left then curls under the diagonal */}
+    <path
+      d="M 58 38 C 72 38 75 52 65 60 C 55 68 42 66 42 74 C 42 82 50 84 56 82"
+      stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" fill="none" opacity="0.75"
+    />
+    {/* Crossbar — the small horizontal tick on the 7 that echoes Hindi notation */}
+    <line x1="38" y1="46" x2="62" y2="46" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.6" />
   </svg>
 );
 
@@ -145,7 +161,7 @@ export default function Home() {
       <SectionDivider stamp={3} />
 
       {/* MENU */}
-      <section id="menu" className="w-full py-24 px-4 relative">
+      <section id="menu" className="w-full py-24 px-4 relative" style={{ backgroundColor: '#fdf4e3', backgroundImage: 'none' }}>
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           <h2 className="font-display italic text-5xl md:text-6xl text-secondary mb-4 text-center">Offerings</h2>
           <p className="font-sans font-light tracking-[0.2em] uppercase text-sm text-secondary/60 mb-20 text-center">Crafted with intention</p>
@@ -233,7 +249,7 @@ export default function Home() {
       <SectionDivider stamp={1} />
 
       {/* CONTACT & LOCATION */}
-      <section id="visit" className="w-full py-24 px-4 overflow-hidden relative">
+      <section id="visit" className="w-full py-24 px-4 overflow-hidden relative" style={{ backgroundColor: '#f5ead6', backgroundImage: 'none' }}>
         <PostalStamp src={stamp3} className="top-24 left-10 opacity-60" rotation={-20} />
         
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
