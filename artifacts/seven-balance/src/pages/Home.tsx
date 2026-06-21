@@ -51,7 +51,7 @@ export default function Home() {
           <img
             src={logoTransparent}
             alt="7 Balance"
-            className="w-64 md:w-80 lg:w-96 object-contain mb-8 drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
+            className="w-48 md:w-60 lg:w-72 object-contain mb-8 drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
           />
 
           {/* Brand taglines */}
