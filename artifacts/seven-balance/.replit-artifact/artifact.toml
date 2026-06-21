@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "7 Balance — Café Website"
+version = "1.0.0"
+id = "artifacts/seven-balance"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23599
+
+[services.development]
+run = "pnpm --filter @workspace/seven-balance run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/seven-balance", "run", "build" ]
+publicDir = "artifacts/seven-balance/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23599"
+BASE_PATH = "/"

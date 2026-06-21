@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-display: var(--app-font-display);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* Colors */
+  /* Aged Parchment / Ivory for backgrounds */
+  --background: 38 48% 90%; 
+  /* Espresso Brown for text */
+  --foreground: 24 43% 12%; 
+  
+  --border: 38 43% 56%; /* Muted Gold */
+  --input: 38 43% 56%; 
+  --ring: 24 43% 12%;
+  
+  --card: 45 40% 95%; /* Warm Ivory */
+  --card-foreground: 24 43% 12%; 
+  --card-border: 38 43% 56%; 
+
+  --popover: 45 40% 95%;
+  --popover-foreground: 24 43% 12%;
+  --popover-border: 38 43% 56%;
+
+  --primary: 16 45% 45%; /* Raw Sienna */
+  --primary-foreground: 45 40% 95%;
+  
+  --secondary: 19 38% 21%; /* Burnt Umber */
+  --secondary-foreground: 45 40% 95%;
+
+  --muted: 38 20% 80%;
+  --muted-foreground: 19 38% 21%;
+
+  --accent: 38 43% 56%; /* Muted Gold / Ochre */
+  --accent-foreground: 24 43% 12%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Fonts */
+  --app-font-sans: 'Lato', sans-serif;
+  --app-font-serif: 'Playfair Display', serif;
+  --app-font-display: 'IM Fell English', serif;
+
+  --radius: 0.25rem;
+
+  --opaque-button-border-intensity: -8;
+}
+
+.dark {
+  --background: 24 43% 12%;
+  --foreground: 38 48% 90%;
+  
+  --border: 38 43% 56%;
+  --input: 38 43% 56%;
+  --ring: 38 48% 90%;
+  
+  --card: 19 38% 21%;
+  --card-foreground: 38 48% 90%;
+  --card-border: 38 43% 56%;
+
+  --popover: 19 38% 21%;
+  --popover-foreground: 38 48% 90%;
+  --popover-border: 38 43% 56%;
+
+  --primary: 16 45% 45%;
+  --primary-foreground: 45 40% 95%;
+  
+  --secondary: 38 43% 56%;
+  --secondary-foreground: 24 43% 12%;
+
+  --muted: 19 38% 15%;
+  --muted-foreground: 38 48% 90%;
+
+  --accent: 38 43% 56%;
+  --accent-foreground: 24 43% 12%;
+
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 0 0% 100%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-foreground;
+    background-image: url('./assets/images/parchment-texture.png');
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+}
+
+/* Texture overlays */
+.mix-blend-multiply {
+  mix-blend-mode: multiply;
+}
+
+.stamp-serrated {
+  mask-image: radial-gradient(circle at 4px 4px, transparent 4px, black 4.5px);
+  mask-size: 16px 16px;
+  mask-position: -4px -4px;
+}
+
+.postcard-border {
+  position: relative;
+}
+.postcard-border::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid hsl(var(--secondary));
+  pointer-events: none;
+}
+.postcard-border::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border: 2px solid hsl(var(--secondary));
+  pointer-events: none;
+}
+
+.ink-underline {
+  position: relative;
+  display: inline-block;
+}
+.ink-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: hsl(var(--primary));
+  opacity: 0.6;
+  border-radius: 50%;
+}

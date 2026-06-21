@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "jFulHgliloOob617g6NEw"
+uri = "file://artifacts/seven-balance/src/assets/images/hero.png"
+type = "image"
+title = "Cafe exterior hero image"
+
+[[generated]]
+id = "cSVca0cse26kefI3_1ZiA"
+uri = "file://artifacts/seven-balance/src/assets/images/element-bean.png"
+type = "image"
+title = "Bean element icon"
+
+[[generated]]
+id = "ZTItgvrjjIaDw1owEvZm1"
+uri = "file://artifacts/seven-balance/src/assets/images/element-grind.png"
+type = "image"
+title = "Grind element icon"
+
+[[generated]]
+id = "C6vFEBjy3W169XgoN-sYF"
+uri = "file://artifacts/seven-balance/src/assets/images/element-water.png"
+type = "image"
+title = "Water element icon"
+
+[[generated]]
+id = "4vx4yBmqBQ-h6kNUgKCzk"
+uri = "file://artifacts/seven-balance/src/assets/images/element-measurement.png"
+type = "image"
+title = "Measurement element icon"
+
+[[generated]]
+id = "7S887l0LKrdxs9V0tMmSD"
+uri = "file://artifacts/seven-balance/src/assets/images/element-heat.png"
+type = "image"
+title = "Heat element icon"
+
+[[generated]]
+id = "m7fH6zu9bU-BKNcOM1yng"
+uri = "file://artifacts/seven-balance/src/assets/images/element-time.png"
+type = "image"
+title = "Time element icon"
+
+[[generated]]
+id = "mz3BW6LD3IoV0fVFJFpJw"
+uri = "file://artifacts/seven-balance/src/assets/images/element-technique.png"
+type = "image"
+title = "Technique element icon"
+
+[[generated]]
+id = "xmKkh_t--dGcxas469wB3"
+uri = "file://artifacts/seven-balance/src/assets/images/postcard-bg.png"
+type = "image"
+title = "Aged Indian postcard background"
+
+[[generated]]
+id = "37InGqzVHUAjiRIiF81G4"
+uri = "file://artifacts/seven-balance/src/assets/images/parchment-texture.png"
+type = "image"
+title = "Aged parchment texture"
