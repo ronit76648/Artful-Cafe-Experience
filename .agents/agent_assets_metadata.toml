@@ -65,3 +65,9 @@ id = "5N9EAqmJsbzQEBjX7P5Qh"
 uri = "file://7balance-website.zip"
 type = "unspecified"
 title = "7 Balance — Static Website (HTML + Assets)"
+
+[[outputs]]
+id = "jvTvEpaDSZtlQpT-OzCx8"
+uri = "file://7balance-standalone.zip"
+type = "unspecified"
+title = "7 Balance — Standalone HTML (open 7balance-standalone.html inside)"
