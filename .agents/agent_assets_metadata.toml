@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "jFulHgliloOob617g6NEw"
@@ -60,3 +59,9 @@ id = "37InGqzVHUAjiRIiF81G4"
 uri = "file://artifacts/seven-balance/src/assets/images/parchment-texture.png"
 type = "image"
 title = "Aged parchment texture"
+
+[[outputs]]
+id = "5N9EAqmJsbzQEBjX7P5Qh"
+uri = "file://7balance-website.zip"
+type = "unspecified"
+title = "7 Balance — Static Website (HTML + Assets)"
