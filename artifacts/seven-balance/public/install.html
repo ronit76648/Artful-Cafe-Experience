@@ -14,7 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       min-height: 100vh;
       display: flex;
@@ -25,25 +24,17 @@
       font-family: 'Lato', sans-serif;
       padding: 24px;
     }
-
     .card {
       background: #ebdcc0;
       border: 1.5px solid #c8a87a55;
       border-radius: 20px;
       box-shadow: 0 12px 48px rgba(90,50,20,0.13);
-      max-width: 420px;
+      max-width: 440px;
       width: 100%;
       padding: 40px 36px 36px;
       text-align: center;
     }
-
-    .logo {
-      height: 64px;
-      width: auto;
-      margin: 0 auto 24px;
-      display: block;
-    }
-
+    .logo { height: 64px; width: auto; margin: 0 auto 24px; display: block; }
     h1 {
       font-family: 'Playfair Display', serif;
       font-style: italic;
@@ -51,23 +42,32 @@
       color: #4B2E14;
       margin-bottom: 8px;
     }
-
     .tagline {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #c8a87a;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
-
+    #platform-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c8a87a;
+      border: 1px solid #c8a87a55;
+      border-radius: 20px;
+      padding: 3px 10px;
+      margin-bottom: 22px;
+    }
     .description {
-      font-size: 0.95rem;
-      color: #4B2E14cc;
+      font-size: 0.92rem;
+      color: #4B2E14bb;
       line-height: 1.7;
-      margin-bottom: 32px;
+      margin-bottom: 26px;
     }
 
-    /* ── Install button ── */
+    /* ── One-click button (shown only when browser offers it) ── */
     #install-btn {
       display: none;
       align-items: center;
@@ -85,29 +85,27 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: background 0.2s, transform 0.15s;
+      margin-bottom: 20px;
     }
     #install-btn:hover { background: #9e3516; transform: translateY(-1px); }
     #install-btn.visible { display: flex; }
 
-    /* ── iOS instructions ── */
-    #ios-steps {
+    /* ── Step-by-step instructions (always shown as fallback) ── */
+    .steps-box {
       display: none;
       text-align: left;
       background: #fff8ee;
       border: 1px solid #c8a87a44;
       border-radius: 14px;
       padding: 20px 22px;
-      margin-top: 8px;
     }
-    #ios-steps.visible { display: block; }
-
-    #ios-steps p {
+    .steps-box.visible { display: block; }
+    .steps-box .note {
       font-size: 0.82rem;
       color: #4B2E14aa;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       line-height: 1.6;
     }
-
     .step {
       display: flex;
       align-items: flex-start;
@@ -117,18 +115,16 @@
       color: #4B2E14cc;
       line-height: 1.55;
     }
+    .step:last-child { margin-bottom: 0; }
     .step-num {
-      min-width: 24px;
-      height: 24px;
+      min-width: 24px; height: 24px;
       border-radius: 50%;
       background: #B93F1B22;
       color: #B93F1B;
       font-weight: 700;
       font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; flex-shrink: 0;
     }
 
     /* ── Already installed ── */
@@ -142,28 +138,12 @@
       border-radius: 12px;
       color: #2C5353;
       font-size: 0.85rem;
-      letter-spacing: 0.05em;
     }
     #installed-msg.visible { display: flex; }
 
-    /* ── Unsupported ── */
-    #unsupported-msg {
-      display: none;
-      font-size: 0.85rem;
-      color: #4B2E14aa;
-      line-height: 1.65;
-    }
-    #unsupported-msg.visible { display: block; }
-
-    .divider {
-      height: 1px;
-      background: #c8a87a44;
-      margin: 28px 0 20px;
-    }
-
+    .divider { height: 1px; background: #c8a87a44; margin: 28px 0 20px; }
     .back-link {
-      font-size: 0.78rem;
-      color: #c8a87a;
+      font-size: 0.78rem; color: #c8a87a;
       text-decoration: none;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -171,151 +151,162 @@
     }
     .back-link:hover { color: #B93F1B; }
 
-    /* Platform badge */
-    #platform-badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #c8a87a;
-      border: 1px solid #c8a87a55;
-      border-radius: 20px;
-      padding: 3px 10px;
-      margin-bottom: 24px;
-    }
+    .icon-inline { display: inline; vertical-align: middle; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <img class="logo" src="/icon-192.png" alt="7 Balance logo"/>
-    <h1>Install 7 Balance</h1>
-    <p class="tagline">Seven elements. One perfect Balance.</p>
-    <span id="platform-badge">Detecting your device…</span>
+<div class="card">
+  <img class="logo" src="/icon-192.png" alt="7 Balance"/>
+  <h1>Install 7 Balance</h1>
+  <p class="tagline">Seven elements. One perfect Balance.</p>
+  <span id="platform-badge">Detecting device…</span>
 
-    <p class="description">
-      Add 7 Balance to your home screen for an app-like experience — no App Store needed.
-    </p>
+  <p class="description">
+    Add 7 Balance to your home screen — works like an app, no App Store needed.
+  </p>
 
-    <!-- Chrome / Edge / Android install button -->
-    <button id="install-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2v13M7 11l5 5 5-5"/><path d="M3 18h18v3H3z"/>
-      </svg>
-      <span id="install-btn-label">Install App</span>
-    </button>
+  <!-- One-click button: shown only when browser fires beforeinstallprompt -->
+  <button id="install-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2v13M7 11l5 5 5-5"/><path d="M3 18h18v3H3z"/>
+    </svg>
+    <span id="install-btn-label">Install App</span>
+  </button>
 
-    <!-- iOS step-by-step -->
-    <div id="ios-steps">
-      <p>Open this page in <strong>Safari</strong> and follow these steps:</p>
-      <div class="step">
-        <span class="step-num">1</span>
-        <span>Tap the <strong>Share</strong> button <svg style="display:inline;vertical-align:middle" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg> at the bottom of Safari</span>
-      </div>
-      <div class="step">
-        <span class="step-num">2</span>
-        <span>Scroll down and tap <strong>"Add to Home Screen"</strong></span>
-      </div>
-      <div class="step">
-        <span class="step-num">3</span>
-        <span>Tap <strong>"Add"</strong> in the top-right corner — done!</span>
-      </div>
+  <!-- Android Chrome manual steps -->
+  <div id="android-steps" class="steps-box">
+    <p class="note">In <strong>Chrome</strong>, tap the menu and choose "Add to Home Screen":</p>
+    <div class="step">
+      <span class="step-num">1</span>
+      <span>Tap the <strong>⋮ menu</strong> (three dots) in the top-right of Chrome</span>
     </div>
-
-    <!-- Already installed -->
-    <div id="installed-msg">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      7 Balance is already installed!
+    <div class="step">
+      <span class="step-num">2</span>
+      <span>Tap <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong></span>
     </div>
-
-    <!-- Unsupported browser -->
-    <div id="unsupported-msg">
-      Your browser doesn't support one-click install.<br/>
-      Try opening this page in <strong>Chrome</strong> (Android / Desktop) or <strong>Safari</strong> (iPhone / iPad).
+    <div class="step">
+      <span class="step-num">3</span>
+      <span>Tap <strong>"Add"</strong> to confirm — the icon appears on your home screen</span>
     </div>
-
-    <div class="divider"></div>
-    <a class="back-link" href="/">← Back to website</a>
   </div>
 
-  <script>
-    const badge       = document.getElementById('platform-badge');
-    const installBtn  = document.getElementById('install-btn');
-    const btnLabel    = document.getElementById('install-btn-label');
-    const iosSteps    = document.getElementById('ios-steps');
-    const installedEl = document.getElementById('installed-msg');
-    const unsupported = document.getElementById('unsupported-msg');
+  <!-- iOS Safari manual steps -->
+  <div id="ios-steps" class="steps-box">
+    <p class="note">Open this page in <strong>Safari</strong> (not Chrome) and follow these steps:</p>
+    <div class="step">
+      <span class="step-num">1</span>
+      <span>Tap the <strong>Share</strong>
+        <svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+        button at the bottom of Safari
+      </span>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <span>Scroll down and tap <strong>"Add to Home Screen"</strong></span>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <span>Tap <strong>"Add"</strong> in the top-right — done!</span>
+    </div>
+  </div>
 
-    let deferredPrompt = null;
+  <!-- Desktop Chrome / Edge manual steps -->
+  <div id="desktop-steps" class="steps-box">
+    <p class="note">In <strong>Chrome</strong> or <strong>Edge</strong>, install from the address bar:</p>
+    <div class="step">
+      <span class="step-num">1</span>
+      <span>Look for the <strong>install icon</strong> (⊕) in the address bar — top right</span>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <span>Click it and then click <strong>"Install"</strong></span>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <span>The app opens in its own window and appears in your Start menu / Dock</span>
+    </div>
+  </div>
 
-    // ── Detect platform ──────────────────────────────────────
-    function getPlatform() {
-      const ua = navigator.userAgent;
-      if (/iphone|ipad|ipod/i.test(ua))  return 'ios';
-      if (/android/i.test(ua))           return 'android';
-      if (!/mobile/i.test(ua))           return 'desktop';
-      return 'unknown';
-    }
+  <!-- Already installed -->
+  <div id="installed-msg">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    7 Balance is already installed!
+  </div>
 
-    function isInstalled() {
-      return window.matchMedia('(display-mode: standalone)').matches
-          || navigator.standalone === true;
-    }
+  <div class="divider"></div>
+  <a class="back-link" href="/">← Back to website</a>
+</div>
 
-    // ── Main logic ───────────────────────────────────────────
-    const platform = getPlatform();
+<script>
+  const badge        = document.getElementById('platform-badge');
+  const installBtn   = document.getElementById('install-btn');
+  const btnLabel     = document.getElementById('install-btn-label');
+  const androidSteps = document.getElementById('android-steps');
+  const iosSteps     = document.getElementById('ios-steps');
+  const desktopSteps = document.getElementById('desktop-steps');
+  const installedEl  = document.getElementById('installed-msg');
 
-    const platformLabels = {
-      ios:     'iPhone / iPad',
-      android: 'Android',
-      desktop: 'Desktop',
-      unknown: 'Device detected',
-    };
-    badge.textContent = platformLabels[platform] || 'Your device';
+  let deferredPrompt = null;
 
-    if (isInstalled()) {
-      installedEl.classList.add('visible');
-    } else if (platform === 'ios') {
-      iosSteps.classList.add('visible');
-    } else {
-      // Wait for beforeinstallprompt (Chrome / Edge / Android)
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        btnLabel.textContent = platform === 'android' ? 'Install App' : 'Install on Desktop';
-        installBtn.classList.add('visible');
-      });
+  function getPlatform() {
+    const ua = navigator.userAgent;
+    if (/iphone|ipad|ipod/i.test(ua)) return 'ios';
+    if (/android/i.test(ua))          return 'android';
+    if (!/mobile/i.test(ua))          return 'desktop';
+    return 'android'; // unknown mobile — default to Android steps
+  }
 
-      // If event never fires after 2s, show unsupported message
-      setTimeout(() => {
-        if (!deferredPrompt && !isInstalled()) {
-          unsupported.classList.add('visible');
-        }
-      }, 2000);
-    }
+  function isInstalled() {
+    return window.matchMedia('(display-mode: standalone)').matches
+        || navigator.standalone === true;
+  }
 
-    // ── Install button click ─────────────────────────────────
-    installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') {
-        installedEl.classList.add('visible');
-        installBtn.classList.remove('visible');
-      }
-      deferredPrompt = null;
+  const platform = getPlatform();
+  const labels = { ios: 'iPhone / iPad', android: 'Android', desktop: 'Desktop / Windows' };
+  badge.textContent = labels[platform] || 'Your device';
+
+  if (isInstalled()) {
+    installedEl.classList.add('visible');
+  } else {
+    // Always show the manual steps immediately — guaranteed to work
+    if (platform === 'ios')     iosSteps.classList.add('visible');
+    if (platform === 'android') androidSteps.classList.add('visible');
+    if (platform === 'desktop') desktopSteps.classList.add('visible');
+
+    // If Chrome offers a one-click prompt — upgrade to the button automatically
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      btnLabel.textContent = platform === 'desktop' ? 'Install on Desktop' : 'Install App';
+      installBtn.classList.add('visible');
+      // Hide manual steps since the button is better
+      androidSteps.classList.remove('visible');
+      desktopSteps.classList.remove('visible');
     });
+  }
 
-    // ── App installed event ──────────────────────────────────
-    window.addEventListener('appinstalled', () => {
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
       installedEl.classList.add('visible');
       installBtn.classList.remove('visible');
-      iosSteps.classList.remove('visible');
-    });
-
-    // ── Register service worker ──────────────────────────────
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
     }
-  </script>
+    deferredPrompt = null;
+  });
+
+  window.addEventListener('appinstalled', () => {
+    installedEl.classList.add('visible');
+    installBtn.classList.remove('visible');
+    androidSteps.classList.remove('visible');
+    iosSteps.classList.remove('visible');
+    desktopSteps.classList.remove('visible');
+  });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+  }
+</script>
 </body>
 </html>
