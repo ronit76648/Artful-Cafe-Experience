@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ElementsSlider } from "@/components/ElementsSlider";
 import { PostalStamp } from "@/components/PostalStamp";
 import { SectionDivider } from "@/components/SectionDivider";
+import { InstallPWA } from "@/components/InstallPWA";
 
 import heroImg from "@/assets/images/hero.png";
 import postcardBg from "@/assets/images/postcard-bg.png";
@@ -25,10 +26,13 @@ export default function Home() {
         <a href="#" className="flex items-center select-none">
           <img src={logoTransparent} alt="7 Balance" className="h-9 w-auto object-contain" />
         </a>
-        <div className="hidden md:flex gap-8 font-sans font-light tracking-[0.22em] text-[10px] uppercase">
-          <a href="#story" className="text-[#f4ebd8]/80 hover:text-[#c8a87a] transition-colors">Our Story</a>
-          <a href="#menu" className="text-[#f4ebd8]/80 hover:text-[#c8a87a] transition-colors">Menu</a>
-          <a href="#visit" className="text-[#f4ebd8]/80 hover:text-[#c8a87a] transition-colors">Visit Us</a>
+        <div className="flex items-center gap-6">
+          <div className="hidden md:flex gap-8 font-sans font-light tracking-[0.22em] text-[10px] uppercase">
+            <a href="#story" className="text-[#f4ebd8]/80 hover:text-[#c8a87a] transition-colors">Our Story</a>
+            <a href="#menu" className="text-[#f4ebd8]/80 hover:text-[#c8a87a] transition-colors">Menu</a>
+            <a href="#visit" className="text-[#f4ebd8]/80 hover:text-[#c8a87a] transition-colors">Visit Us</a>
+          </div>
+          <InstallPWA />
         </div>
       </nav>
 
